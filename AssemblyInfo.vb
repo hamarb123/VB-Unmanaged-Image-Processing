@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Desktop")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("Desktop")>
-<Assembly: AssemblyCopyright("Copyright ©  2017")>
+<Assembly: AssemblyTitle("VB Unmanaged Image Processing for Desktop")>
+<Assembly: AssemblyDescription("Use 'VB Unmanaged Image Processing' for fast CPU Image Processing in .NET")>
+<Assembly: AssemblyCompany("hamarb123 FunBandit29")>
+<Assembly: AssemblyProduct("VB Unmanaged Image Processing")>
+<Assembly: AssemblyCopyright("hamarb123 FunBandit29 Copyright ©  2017")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

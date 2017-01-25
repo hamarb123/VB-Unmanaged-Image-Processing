@@ -102,5 +102,6 @@ Public Class VBUnmanagedImageProcessingControl
         Dim gfx As Graphics = Graphics.FromImage(i)
         g.L = Me.Pixels
         g.Invalidate(Function() gfx, Me.Image.GetSize())
+        Return i
     End Function
 End Class
