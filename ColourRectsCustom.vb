@@ -1,8 +1,8 @@
 ﻿#If DESKTOP = True Then
-Imports System.Drawing
+Imports Rectangle = System.Drawing.Rectangle
 #End If
 
-Public Class ColourRectsCustom
+Public NotInheritable Class ColourRectsCustom
     Inherits Tuple(Of Rectangle(), ColourCustom)
 
     Public Sub New(Rects As Rectangle(), Color As ColourCustom)

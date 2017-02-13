@@ -1,8 +1,8 @@
 ﻿#If DESKTOP = True Then
-Imports System.Drawing
+Imports Size = System.Drawing.Size
 #End If
 
-Public Class InstructionsCustom
+Public NotInheritable Class InstructionsCustom
     Inherits Tuple(Of ColourRectsCustom(), Size)
 
     Public Sub New(Colors As ColourRectsCustom(), Size As Size)

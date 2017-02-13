@@ -1,16 +1,19 @@
 ﻿#If DESKTOP = True Then
-Imports System.Drawing
+Imports Bitmap = System.Drawing.Bitmap
+Imports Point = System.Drawing.Point
+Imports Rectangle = System.Drawing.Rectangle
+Imports Size = System.Drawing.Size
 #End If
 
-Public Class ImageToDrawInstructions
-    Public Shared Function GetAllStepsFromImage(Bitmap As Bitmap) As InstructionsCustom
+Public Module ImageToDrawInstructions
+    Public Function GetAllStepsFromImage(Bitmap As Bitmap) As InstructionsCustom
         Dim Colors As New List(Of ColourCustom)
         Dim Points As New List(Of List(Of Point))
         For x As Integer = 0 To Bitmap.Width - 1
             For y As Integer = 0 To Bitmap.Height - 1
                 Dim color1 = Bitmap.GetPixel(x, y)
                 If color1.A = 255 Then
-                    Dim color = New ColourCustom(color1.R, color1.B, color1.G)
+                    Dim color = New ColourCustom(color1.R, color1.G, color1.B)
                     If Not Colors.Contains(color) Then
                         Colors.Add(color)
                         Points.Add(New List(Of Point))
@@ -31,10 +34,33 @@ Public Class ImageToDrawInstructions
             Next
             ColorRects.Add(New ColourRectsCustom(GetAllSteps(matrix), Colors(z)))
         Next
-        Return New InstructionsCustom(ColorRects.ToArray, New Size(Bitmap.Width, Bitmap.Height))
+        Return New InstructionsCustom(ColorRects.ToArray(), New Size(Bitmap.Width, Bitmap.Height))
     End Function
 
-    Public Shared Function GetAllSteps(matrix As Integer(,)) As Rectangle()
+    Public Function GetInstructionsPBPFromImage(Bitmap As Bitmap) As InstructionsCustom
+        Dim Colors As New List(Of ColourCustom)
+        Dim Points As New List(Of List(Of Point))
+        For x As Integer = 0 To Bitmap.Width - 1
+            For y As Integer = 0 To Bitmap.Height - 1
+                Dim color1 = Bitmap.GetPixel(x, y)
+                If color1.A = 255 Then
+                    Dim color = New ColourCustom(color1.R, color1.G, color1.B)
+                    If Not Colors.Contains(color) Then
+                        Colors.Add(color)
+                        Points.Add(New List(Of Point))
+                    End If
+                    Points(Colors.IndexOf(color)).Add(New Point(x, y))
+                End If
+            Next
+        Next
+        Dim ColorRects As New List(Of ColourRectsCustom)
+        For z As Integer = 0 To Colors.Count - 1
+            ColorRects.Add(New ColourRectsCustom(Points(z).ConvertAll(Function(p As Point) New Rectangle(p, New Size(1, 1))).ToArray(), Colors(z)))
+        Next
+        Return New InstructionsCustom(ColorRects.ToArray(), New Size(Bitmap.Width, Bitmap.Height))
+    End Function
+
+    Public Function GetAllSteps(matrix As Integer(,)) As Rectangle()
         Dim rects As New List(Of Rectangle)
 1:
         Dim any1 As Boolean = False
@@ -63,7 +89,7 @@ Public Class ImageToDrawInstructions
         End If
     End Function
 
-    Public Shared Function MaxSubmatrix(matrix As Integer(,)) As Rectangle
+    Public Function MaxSubmatrix(matrix As Integer(,)) As Rectangle
         Dim n As Integer = matrix.GetLength(0)
         Dim m As Integer = matrix.GetLength(1)
         Dim maxArea As Integer = -1, tempArea As Integer = -1
@@ -130,4 +156,4 @@ Public Class ImageToDrawInstructions
 
         Return New Rectangle(x1, y1, (x2 - x1 + 1), (y2 - y1 + 1))
     End Function
-End Class
+End Module

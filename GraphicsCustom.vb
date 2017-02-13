@@ -1,12 +1,22 @@
 ﻿Imports hamarb123.VBUMIP.Desktop.ImageCustom
 #If DESKTOP = True Then
-Imports System.Drawing
-Imports System.Drawing.Imaging
-Imports System.Linq
-Imports System.Runtime.InteropServices
+Imports Image = System.Drawing.Image
+Imports Graphics = System.Drawing.Graphics
+Imports Size = System.Drawing.Size
+Imports CompositingMode = System.Drawing.Drawing2D.CompositingMode
+Imports InterpolationMode = System.Drawing.Drawing2D.InterpolationMode
+Imports PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode
+Imports CompositingQuality = System.Drawing.Drawing2D.CompositingQuality
+Imports Rectangle = System.Drawing.Rectangle
+Imports Bitmap = System.Drawing.Bitmap
+Imports PixelFormat = System.Drawing.Imaging.PixelFormat
+Imports ImageLockMode = System.Drawing.Imaging.ImageLockMode
+Imports System.Linq.Enumerable
+Imports Enumerable = System.Linq.Enumerable
+Imports Marshal = System.Runtime.InteropServices.Marshal
 #End If
 
-Public Class GraphicsCustom
+Public NotInheritable Class GraphicsCustom
 #If DESKTOP = True Then
     Public Sub New(size As Size)
         Me.ImageSize = size
@@ -24,10 +34,10 @@ Public Class GraphicsCustom
 
         Dim g = getGraphics.Invoke
 
-        g.CompositingMode = Drawing2D.CompositingMode.SourceCopy
-        g.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
-        g.PixelOffsetMode = Drawing2D.PixelOffsetMode.Half
-        g.CompositingQuality = Drawing2D.CompositingQuality.Default
+        g.CompositingMode = CompositingMode.SourceCopy
+        g.InterpolationMode = InterpolationMode.NearestNeighbor
+        g.PixelOffsetMode = PixelOffsetMode.Half
+        g.CompositingQuality = CompositingQuality.Default
         Dim drawRectangle As Rectangle
         drawRectangle = New Rectangle(0, 0, renderSize.Width, renderSize.Height)
 

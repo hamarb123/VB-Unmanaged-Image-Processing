@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ColorCustom.vb" />
     <Compile Include="ColourRectsCustom.vb" />
+    <Compile Include="FontCustom.vb" />
     <Compile Include="GraphicsCustom.vb" />
     <Compile Include="AssemblyInfo.vb" />
     <Compile Include="Application.Designer.vb">

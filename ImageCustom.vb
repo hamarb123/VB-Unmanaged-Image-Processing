@@ -1,27 +1,10 @@
 ﻿#If DESKTOP = True Then
-Imports System.Drawing
+Imports Point = System.Drawing.Point
+Imports Rectangle = System.Drawing.Rectangle
+Imports Size = System.Drawing.Size
 #End If
 
 Public NotInheritable Class ImageCustom
-    'Public Sub DrawImage(Area As Rectangle, Image As ImageCustom)
-    '    SyncLock Me.Locker
-    '        Dim Size = Image.GetSize()
-    '        Dim ContRect = New Rectangle(Point.Empty, _GetSize())
-    '        If ContRect.Contains(Area) Then
-    '            For X As Integer = Area.Left To Area.Left + Area.Width - 1
-    '                For Y As Integer = Area.Top To Area.Top + Area.Height - 1
-    '                    Dim Color As (Alpha As Byte, Red As Byte, Green As Byte, Blue As Byte) = Image.GetPixel(New Point(Math.Floor((X - Area.Left) / Area.Width * Size.Width), Math.Floor((Y - Area.Top) / Area.Height * Size.Height)))
-    '                    Me.Pixels((X + Y * Me.Width) * BPP + 0) = Color.Blue
-    '                    Me.Pixels((X + Y * Me.Width) * BPP + 1) = Color.Green
-    '                    Me.Pixels((X + Y * Me.Width) * BPP + 2) = Color.Red
-    '                    Me.Pixels((X + Y * Me.Width) * BPP + 3) = Color.Alpha
-    '                Next
-    '            Next
-    '        Else
-    '            Throw New IndexOutOfRangeException()
-    '        End If
-    '    End SyncLock
-    'End Sub 
     Public Sub Clear(Color As ColourCustom)
         SyncLock Me.Locker
             Dim Size = _GetSize()
@@ -134,8 +117,6 @@ Public NotInheritable Class ImageCustom
             For y As Integer = Area.Y To Area.Y + Area.Height - 1
                 Array.Copy(pixels, 0, Me.Pixels, (Area.X + y * Me.Width) * BPP, pixels.Length)
             Next
-        Else
-            'Throw New IndexOutOfRangeException()
         End If
     End Sub
 
